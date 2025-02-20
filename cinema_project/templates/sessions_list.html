@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Sessions</h1>
+<ul>
+    {% for session in sessions %}
+    <li>
+        <a href="{% url 'session_details' session.pk %}">
+            {{ session.movie.movie_name }} — {{ session.start_time }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

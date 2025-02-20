@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Directors</h2>
+<ul>
+    {% for director in directors %}
+    <li>
+        <a href="{% url 'director_details' director.pk %}">
+            {{ director.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ genre.genre_name }}</h1>
+    <p>Возрастной рейтинг: {{ genre.pg_rating }}</p>
+
+    <h2>Фильмы в этом жанре:</h2>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <a href="{% url 'movie_details' movie.pk %}">{{ movie.movie_name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

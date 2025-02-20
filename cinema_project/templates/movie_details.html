@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>{{ movie.movie_name }}</h1>
+    <p>Release date: {{ movie.release_date }}</p>
+    <p>{{ movie.description }}</p>
+
+    <h2>Director:</h2>
+    <p><a href="{% url 'director_details' movie.director.pk %}">{{ movie.director.name }}</a></p>
+
+    <h2>Actors:</h2>
+    <ul>
+        {% for actor in movie.actors.all %}
+            <li><a href="{% url 'actor_details' actor.pk %}">{{ actor.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Genres:</h2>
+    <ul>
+        {% for genre in movie.genres.all %}
+            <li><a href="{% url 'genre_details' genre.pk %}">{{ genre.genre_name }}</a></li>
+        {% endfor %}
+    </ul>
+    
+    {% if movie.image %}
+        <img src="{{ movie.image.url }}" alt="{{ movie.movie_name }}" style="max-width: 400px; height: auto; border-radius: 10px;">
+    {% else %}
+        <img src="{% static 'images/default_movie.jpg' %}" alt="No Image Available" style="max-width: 400px; height: auto; border-radius: 10px;">
+    {% endif %}
+{% endblock %}
